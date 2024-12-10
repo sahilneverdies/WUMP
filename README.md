@@ -113,3 +113,8 @@ Sonu Jana - *Head Developer* - **[GitHub](https://github.com/sonujana26)**
 
 **Team:**  
 [Olympus Development™](https://discord.gg/odx)
+<div align="center">
+  <a href="https://discord.com/invite/odx">
+    <img src="https://discordapp.com/api/guilds/699587669059174461/widget.png?style=banner2">
+  </a>
+</div>
