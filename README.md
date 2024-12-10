@@ -86,22 +86,22 @@ Olympus is a powerful, easy-to-use Discord bot designed to enhance your server e
    ```
 
 2. **Prefix:**
-   Default Prefix: **&**
+   Default Prefix: `$`
    > You can change prefix **[here](https://github.com/sonujana26/olympus-bot/blob/main/utils/Tools.py#L84)**.
    
-3. **For Music:**  
+4. **For Music:**  
    A public Lavalink is used, hosted by [Winkle Music](https://discord.gg/winklemusic) by [Ujjwal](https://github.com/UjjwalxD). For better audio quality, it is recommended to set up your private Lavalink v4.  
    > Update your Lavalink URL, password, and other configurations [by clicking here](https://github.com/sonujana26/olympus-bot/blob/main/cogs/commands/music.py#L339).
 
-4. **Logging & Notifications:**  
+5. **Logging & Notifications:**  
    - **Command Logs:** Get a channel webhook URL and update it [here](https://github.com/sonujana26/olympus-bot/blob/main/main.py#L75) (in `main.py`).  
    - **Guild Joins:** Add the channel ID [here](https://github.com/sonujana26/olympus-bot/blob/main/cogs/events/on_guild.py#L25) (in `cogs/events/on_guild.py`).  
    - **Guild Leaves:** Add the channel ID [here](https://github.com/sonujana26/olympus-bot/blob/main/cogs/events/on_guild.py#L109) (in `cogs/events/on_guild.py`).
 
-5. **No Prefix Commands:**  
+6. **No Prefix Commands:**  
    There are several `np` commands like `np add`, `np remove`, `auto np add`, `auto np remove`, `auto np role`, etc. Check and modify them as needed in `cogs/commands/np.py`.
 
-6. **Emojis & Colors:**  
+7. **Emojis & Colors:**  
    Unfortunately, there is no centralized setup for emojis & embed colors. You need to manually update emojis in all files where they are used.
 
 ## License
