@@ -1,6 +1,6 @@
 <h1 align="center">
  <br>
-  <a href="https://github.com/sonujana26"><img src="https://v2.pogy.xyz/thumb.png"></a>
+  <a href="https://github.com/sonujana26"><img src="https://cdn.discordapp.com/avatars/1144179659735572640/a_8d3bbc050480bc9157fe71c9334d8213.png?size=1024"></a>
   <br>
   Olympus the Ultimate Discord Bot [ Discord.py v2.4.0]
   <br>
