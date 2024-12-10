@@ -88,7 +88,7 @@ Here’s the Installation and Setting Up sections formatted with proper GitHub s
 
 2. **For Music:**  
    A public Lavalink is used, hosted by [Winkle Music](https://discord.gg/winklemusic) by [Ujjwal](https://github.com/UjjwalxD). For better audio quality, it is recommended to set up your private Lavalink v4.  
-   > Update your Lavalink URL, password, and other configurations [here](https://github.com/sonujana26/olympus-bot/blob/main/cogs/commands/music.py#L339).
+   > Update your Lavalink URL, password, and other configurations [by clicking here](https://github.com/sonujana26/olympus-bot/blob/main/cogs/commands/music.py#L339).
 
 3. **Logging & Notifications:**  
    - **Command Logs:** Get a channel webhook URL and update it [here](https://github.com/sonujana26/olympus-bot/blob/main/main.py#L75) (in `main.py`).  
@@ -98,5 +98,18 @@ Here’s the Installation and Setting Up sections formatted with proper GitHub s
 4. **No Prefix Commands:**  
    There are several `np` commands like `np add`, `np remove`, `auto np add`, `auto np remove`, `auto np role`, etc. Check and modify them as needed in `cogs/commands/np.py`.
 
-5. **Emojis:**  
-   Unfortunately, there is no centralized setup for emojis. You need to manually update emojis in all files where they are used.
+5. **Emojis & Colors:**  
+   Unfortunately, there is no centralized setup for emojis & embed colors. You need to manually update emojis in all files where they are used.
+
+## License
+Released under the [Apache License](http://www.apache.org/licenses/LICENSE-2.0) license.
+
+## Donate
+Coming Soon
+
+## Credits
+**Author:**  
+Sonu Jana - Head Developer - [GitHub](https://github.com/sonujana26)
+
+**Team:**  
+[Olympus Development ™](https://discord.gg/odx)
