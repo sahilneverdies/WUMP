@@ -55,10 +55,10 @@ Olympus is a powerful, easy-to-use Discord bot designed to enhance your server e
 | Feature                 | Description                                                      |
 |-------------------------|------------------------------------------------------------------|
 | ![Security](https://img.shields.io/badge/Security-Antinuke%20%26%20Emergency-red?style=for-the-badge) | Protect your server with Antinuke and emergency features. |
-| ![Automoderation](https://img.shields.io/badge/Automoderation-Advanced%20Filtering-red?style=for-the-badge) | Automatically moderate your server to prevent spam and abuse. |
+| ![Automoderation](https://img.shields.io/badge/Automoderation-Advanced-red?style=for-the-badge) | Automatically moderate your server to prevent spam and abuse. |
 | ![Moderation](https://img.shields.io/badge/Moderation-Essential%20Tools-red?style=for-the-badge) | Manage your community with powerful moderation commands. |
 | ![Music System](https://img.shields.io/badge/Music%20System-High%20Quality-red?style=for-the-badge) | Stream music with advanced controls and great sound quality. |
-| ![Welcoming](https://img.shields.io/badge/Welcoming-Customizable%20Messages-red?style=for-the-badge) | Greet members with personalized welcome messages. |
+| ![Welcoming](https://img.shields.io/badge/Welcoming-Customizable-red?style=for-the-badge) | Greet members with personalized welcome messages. |
 | ![Utilities](https://img.shields.io/badge/Utilities-Efficient%20Tools-red?style=for-the-badge) | Access tools that simplify server management. |
 | ![Giveaway](https://img.shields.io/badge/Giveaway-Easy%20Management-red?style=for-the-badge) | Host and manage giveaways effortlessly. |
 | ![Games](https://img.shields.io/badge/Games-Fun%20%26%20Interactive-red?style=for-the-badge) | Enjoy interactive games with your community. |
