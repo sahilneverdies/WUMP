@@ -66,3 +66,37 @@ Olympus is a powerful, easy-to-use Discord bot designed to enhance your server e
 | ![Fun](https://img.shields.io/badge/Fun-Entertainment%20Commands-red?style=for-the-badge) | Liven up your server with engaging fun commands. |
 | ![Voice](https://img.shields.io/badge/Voice-Channel%20Control-red?style=for-the-badge) | Manage voice channels with advanced utilities. |
 | ![AI Image Generator](https://img.shields.io/badge/AI%20Image%20Generator-Stunning%20Visuals-red?style=for-the-badge) | Create AI-powered images directly from Discord. |
+
+Here’s the Installation and Setting Up sections formatted with proper GitHub style:
+
+## Installation
+
+1. First, clone the repository:  
+   ```bash
+   git clone https://github.com/sonujana26/olympus-bot
+   ```
+2. After cloning, run the bot:
+   ```bash
+   python main.py
+   ```
+## Setting Up
+
+1. Rename `example.env` to `.env` and replace the bot token value:
+   ```env
+   TOKEN=YOUR_BOT_TOKEN_HERE
+   ```
+
+2. **For Music:**  
+   A public Lavalink is used, hosted by [Winkle Music](https://discord.gg/winklemusic) by [Ujjwal](https://github.com/UjjwalxD). For better audio quality, it is recommended to set up your private Lavalink v4.  
+   > Update your Lavalink URL, password, and other configurations [here](https://github.com/sonujana26/olympus-bot/blob/main/cogs/commands/music.py#L339).
+
+3. **Logging & Notifications:**  
+   - **Command Logs:** Get a channel webhook URL and update it [here](https://github.com/sonujana26/olympus-bot/blob/main/main.py#L75) (in `main.py`).  
+   - **Guild Joins:** Add the channel ID [here](https://github.com/sonujana26/olympus-bot/blob/main/cogs/events/on_guild.py#L25) (in `cogs/events/on_guild.py`).  
+   - **Guild Leaves:** Add the channel ID [here](https://github.com/sonujana26/olympus-bot/blob/main/cogs/events/on_guild.py#L109) (in `cogs/events/on_guild.py`).
+
+4. **No Prefix Commands:**  
+   There are several `np` commands like `np add`, `np remove`, `auto np add`, `auto np remove`, `auto np role`, etc. Check and modify them as needed in `cogs/commands/np.py`.
+
+5. **Emojis:**  
+   Unfortunately, there is no centralized setup for emojis. You need to manually update emojis in all files where they are used.
