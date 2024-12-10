@@ -46,11 +46,11 @@
 
 ## 🔗 [Invite the Public Bot (Olympus) by clicking here!](https://discord.com/oauth2/authorize?client_id=1144179659735572640&permissions=2113268958&scope=bot)
 
-## About
+## 📜 About
 
 Olympus is a powerful, easy-to-use Discord bot designed to enhance your server experience with an extensive suite of features. Built with advanced security, automoderation, moderation, music systems, welcoming features, and more at its core, Olympus ensures your community stays safe and well-managed, giving you peace of mind and control.
 
-## Features
+## ✨ Features
 
 | Feature                 | Description                                                      |
 |-------------------------|------------------------------------------------------------------|
@@ -69,7 +69,7 @@ Olympus is a powerful, easy-to-use Discord bot designed to enhance your server e
 
 Here’s the Installation and Setting Up sections formatted with proper GitHub style:
 
-## Installation
+## ⚙️ Installation
 
 1. First, clone the repository:  
    ```bash
@@ -79,7 +79,7 @@ Here’s the Installation and Setting Up sections formatted with proper GitHub s
    ```bash
    python main.py
    ```
-## Setting Up
+## 🛠️ Setting Up
 
 1. Rename `example.env` to `.env` and replace the bot token value:
    ```env
@@ -101,15 +101,15 @@ Here’s the Installation and Setting Up sections formatted with proper GitHub s
 5. **Emojis & Colors:**  
    Unfortunately, there is no centralized setup for emojis & embed colors. You need to manually update emojis in all files where they are used.
 
-## License
+## 📄 License
 Released under the [Apache License](http://www.apache.org/licenses/LICENSE-2.0) license.
 
-## Donate
+## 💰 Donate
 Coming Soon
 
-## Credits
+## 👥 Credits
 **Author:**  
-Sonu Jana - Head Developer - [GitHub](https://github.com/sonujana26)
+Sonu Jana - *Head Developer* - **[GitHub](https://github.com/sonujana26)**
 
 **Team:**  
-[Olympus Development ™](https://discord.gg/odx)
+[Olympus Development™](https://discord.gg/odx)
