@@ -1,6 +1,6 @@
 <h1 align="center">
  <br>
-  <a href="https://github.com/sonujana26"><img src="https://cdn.discordapp.com/avatars/1144179659735572640/a_8d3bbc050480bc9157fe71c9334d8213.png?size=64"></a>
+  <a href="https://github.com/sonujana26"><img src="https://cdn.discordapp.com/avatars/1144179659735572640/a_8d3bbc050480bc9157fe71c9334d8213.png?size=128"></a>
   <br>
   Olympus the Ultimate Discord Bot
   <br>
@@ -45,3 +45,27 @@
 </p>
 
 ## 🔗 [Invite the Public Bot (Olympus) by clicking here!](https://discord.com/oauth2/authorize?client_id=1144179659735572640&permissions=2113268958&scope=bot)
+
+## About
+
+Olympus is a powerful, easy-to-use Discord bot designed to enhance your server experience with an extensive suite of features. Built with advanced security, automoderation, moderation, music systems, welcoming features, and more at its core, Olympus ensures your community stays safe and well-managed, giving you peace of mind and control.
+
+## Features
+
+<details>
+<summary><b><span style="color:red;">Explore the Powerful Features</span></b></summary>
+
+- **Security**: Antinuke & Emergency systems to protect your server.  
+- **Automoderation**: Automated tools to keep your server free of spam and harmful behavior.  
+- **Moderation**: Essential commands for server management.  
+- **Music System**: High-quality music streaming with advanced controls.  
+- **Welcoming**: Customizable welcome messages to greet your members.  
+- **Utilities**: Useful tools to make managing your server easier.  
+- **Giveaway**: Simple and efficient giveaway management.  
+- **Games**: Fun, interactive games for community engagement.  
+- **Customrole**: Assign and manage custom roles with ease.  
+- **Fun**: Entertaining commands to make your server lively.  
+- **Voice**: Advanced voice channel controls and utilities.  
+- **AI Image Generator**: Generate stunning AI-powered images directly from Discord.
+
+</details>
