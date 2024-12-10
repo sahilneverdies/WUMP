@@ -10,16 +10,16 @@
 
 <div align=center>
 
- <a href="https://github.com/omnilib/aiosqlite">
-    <img src="https://img.shields.io/badge/aiosqlite-%23003B57.svg?&style=for-the-badge&logo=sqlite&logoColor=white" alt="aiosqlite">
+  <a href="https://github.com/Rapptz/discord.py">
+    <img src="https://img.shields.io/badge/discord.py-v2.4.0-blue.svg?&style=for-the-badge&logo=python" alt="discordpy">
   </a>
   
   <a href="https://github.com/EvieePy/Wavelink">
-    <img src="https://img.shields.io/badge/Wavelink-%2300AFF0.svg?&style=for-the-badge&logo=discord&logoColor=white" alt="wavelink">
+    <img src="https://img.shields.io/badge/Wavelink-v3.4.1-blue.svg?&style=for-the-badge&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="wavelink" style="color:yellow;">
   </a>
 
-  <a href="https://github.com/Rapptz/discord.py">
-    <img src="https://img.shields.io/badge/discord.py-v2.4.0-blue.svg?&style=for-the-badge&logo=python" alt="discordpy">
+  <a href="https://github.com/omnilib/aiosqlite">
+    <img src="https://img.shields.io/badge/aiosqlite-%23003B57.svg?&style=for-the-badge&logo=sqlite&logoColor=white" alt="aiosqlite">
   </a>
 
   <a href="https://github.com/peterhanania/Pogy/blob/main/LICENSE">
