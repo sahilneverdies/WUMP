@@ -52,20 +52,66 @@ Olympus is a powerful, easy-to-use Discord bot designed to enhance your server e
 
 ## Features
 
-<details>
-<summary><b><span style="color:red;">Explore the Powerful Features</span></b></summary>
+<div align="left">
 
-- **Security**: Antinuke & Emergency systems to protect your server.  
-- **Automoderation**: Automated tools to keep your server free of spam and harmful behavior.  
-- **Moderation**: Essential commands for server management.  
-- **Music System**: High-quality music streaming with advanced controls.  
-- **Welcoming**: Customizable welcome messages to greet your members.  
-- **Utilities**: Useful tools to make managing your server easier.  
-- **Giveaway**: Simple and efficient giveaway management.  
-- **Games**: Fun, interactive games for community engagement.  
-- **Customrole**: Assign and manage custom roles with ease.  
-- **Fun**: Entertaining commands to make your server lively.  
-- **Voice**: Advanced voice channel controls and utilities.  
-- **AI Image Generator**: Generate stunning AI-powered images directly from Discord.
+  <a href="#">
+    <img src="https://img.shields.io/badge/Security-Antinuke%20%26%20Emergency-red?style=for-the-badge" alt="Security">
+  </a>  
+  - Protect your server with Antinuke and emergency features.
 
-</details>
+  <a href="#">
+    <img src="https://img.shields.io/badge/Automoderation-Advanced%20Filtering-red?style=for-the-badge" alt="Automoderation">
+  </a>  
+  - Automatically moderate your server to prevent spam and abuse.
+
+  <a href="#">
+    <img src="https://img.shields.io/badge/Moderation-Essential%20Tools-red?style=for-the-badge" alt="Moderation">
+  </a>  
+  - Manage your community with powerful moderation commands.
+
+  <a href="#">
+    <img src="https://img.shields.io/badge/Music%20System-High%20Quality-red?style=for-the-badge" alt="Music System">
+  </a>  
+  - Stream music with advanced controls and great sound quality.
+
+  <a href="#">
+    <img src="https://img.shields.io/badge/Welcoming-Customizable%20Messages-red?style=for-the-badge" alt="Welcoming">
+  </a>  
+  - Greet members with personalized welcome messages.
+
+  <a href="#">
+    <img src="https://img.shields.io/badge/Utilities-Efficient%20Tools-red?style=for-the-badge" alt="Utilities">
+  </a>  
+  - Access tools that simplify server management.
+
+  <a href="#">
+    <img src="https://img.shields.io/badge/Giveaway-Easy%20Management-red?style=for-the-badge" alt="Giveaway">
+  </a>  
+  - Host and manage giveaways effortlessly.
+
+  <a href="#">
+    <img src="https://img.shields.io/badge/Games-Fun%20%26%20Interactive-red?style=for-the-badge" alt="Games">
+  </a>  
+  - Enjoy interactive games with your community.
+
+  <a href="#">
+    <img src="https://img.shields.io/badge/Customrole-Role%20Management-red?style=for-the-badge" alt="Customrole">
+  </a>  
+  - Easily assign and manage custom roles.
+
+  <a href="#">
+    <img src="https://img.shields.io/badge/Fun-Entertainment%20Commands-red?style=for-the-badge" alt="Fun">
+  </a>  
+  - Liven up your server with engaging fun commands.
+
+  <a href="#">
+    <img src="https://img.shields.io/badge/Voice-Channel%20Control-red?style=for-the-badge" alt="Voice">
+  </a>  
+  - Manage voice channels with advanced utilities.
+
+  <a href="#">
+    <img src="https://img.shields.io/badge/AI%20Image%20Generator-Stunning%20Visuals-red?style=for-the-badge" alt="AI Image Generator">
+  </a>  
+  - Create AI-powered images directly from Discord.
+
+</div>
