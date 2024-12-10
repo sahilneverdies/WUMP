@@ -19,11 +19,11 @@
   </a>
 
   <a href="https://github.com/Rapptz/discord.py">
-    <img src="https://img.shields.io/badge/discord.py-v2.4.0-blue.svg?logo=npm" alt="discordpy">
+    <img src="https://img.shields.io/badge/discord.py-v2.4.0-blue.svg?&style=for-the-badge&logo=python" alt="discordpy">
   </a>
 
   <a href="https://github.com/peterhanania/Pogy/blob/main/LICENSE">
-    <img src="https://img.shields.io/badge/license-Apache%202-blue" alt="license">
+    <img src="https://img.shields.io/badge/license-Apache%202-blue?&style=for-the-badge" alt="license">
   </a>
 
 </div>
