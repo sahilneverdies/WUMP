@@ -1,8 +1,8 @@
 <h1 align="center">
  <br>
-  <a href="https://github.com/sonujana26"><img src="https://cdn.discordapp.com/avatars/1144179659735572640/a_8d3bbc050480bc9157fe71c9334d8213.png?size=128"></a>
+  <a href="https://github.com/sonujana26"><img src="https://cdn.discordapp.com/avatars/1144179659735572640/a_8d3bbc050480bc9157fe71c9334d8213.png?size=64"></a>
   <br>
-  Olympus the Ultimate Discord Bot [ Discord.py ]
+  Olympus the Ultimate Discord Bot
   <br>
 </h1>
 
@@ -44,4 +44,4 @@
   <a href="#credits">Credits</a>
 </p>
 
-## 🔗 [Invite the Public Bot (Olympus) by clicking here](https://discord.com/oauth2/authorize?client_id=1144179659735572640&permissions=2113268958&scope=bot)
+## 🔗 [Invite the Public Bot (Olympus) by clicking here!](https://discord.com/oauth2/authorize?client_id=1144179659735572640&permissions=2113268958&scope=bot)
