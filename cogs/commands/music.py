@@ -442,14 +442,14 @@ class Music(commands.Cog):
                 return
         vc.autoplay = wavelink.AutoPlayMode.disabled
 
-        if re.match(SPOTIFY_TRACK_REGEX, query):
+        """if re.match(SPOTIFY_TRACK_REGEX, query):
             await self.handle_spotify_link(ctx, vc, query, "track")
         elif re.match(SPOTIFY_PLAYLIST_REGEX, query):
             await self.handle_spotify_link(ctx, vc, query, "playlist")
         elif re.match(SPOTIFY_ALBUM_REGEX, query):
             await self.handle_spotify_link(ctx, vc, query, "album")
         
-            return
+            return"""
             
         tracks = await wavelink.Playable.search(query)
         if not tracks:
