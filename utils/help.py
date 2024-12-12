@@ -64,11 +64,11 @@ class View(discord.ui.View):
             self.add_item(Dropdown(ctx=self.ctx, options=self.options))
 
     def add_buttons(self):
-        self.homeB = Button(label="", style=discord.ButtonStyle.secondary, emoji="<:olympus_first:1254347208254558279>", command=self.set_page, args=0, ctx=self.ctx)
-        self.backB = Button(label="", style=discord.ButtonStyle.secondary, emoji="<:olympus_backward:1254314965351923795>", command=self.to_page, args=-1, ctx=self.ctx)
-        self.quitB = Button(label="", style=discord.ButtonStyle.danger, emoji="<:olympus_bin:1254336650075701308>", command=self.quit, ctx=self.ctx)
-        self.nextB = Button(label="", style=discord.ButtonStyle.secondary, emoji="<:olympus_forward:1254314940668317717>", command=self.to_page, args=1, ctx=self.ctx)
-        self.lastB = Button(label="", style=discord.ButtonStyle.secondary, emoji="<:olympus_last:1254347295122526208>", command=self.set_last_page, ctx=self.ctx)
+        self.homeB = Button(label="", style=discord.ButtonStyle.secondary, emoji="⏪", command=self.set_page, args=0, ctx=self.ctx)
+        self.backB = Button(label="", style=discord.ButtonStyle.secondary, emoji="◀️", command=self.to_page, args=-1, ctx=self.ctx)
+        self.quitB = Button(label="", style=discord.ButtonStyle.danger, emoji="🔲", command=self.quit, ctx=self.ctx)
+        self.nextB = Button(label="", style=discord.ButtonStyle.secondary, emoji="▶️", command=self.to_page, args=1, ctx=self.ctx)
+        self.lastB = Button(label="", style=discord.ButtonStyle.secondary, emoji="⏩", command=self.set_last_page, ctx=self.ctx)
 
         buttons = [self.homeB, self.backB, self.quitB, self.nextB, self.lastB]
         for button in buttons:
@@ -93,7 +93,7 @@ class View(discord.ui.View):
 
         options.append(
             discord.SelectOption(label="Home",
-                                 emoji='<:olympus_home:1222797563950796841>', description=""))
+                                 emoji='🏠', description=""))
         embeds.append(self.home)
         total_pages += 1
 
@@ -148,5 +148,3 @@ class View(discord.ui.View):
 
     async def set_last_page(self, interaction: discord.Interaction):
         await self.set_page(len(self.options) - 1, interaction)
-
-    
