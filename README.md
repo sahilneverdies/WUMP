@@ -84,7 +84,7 @@ Olympus is a powerful, easy-to-use Discord bot designed to enhance your server e
    ```env
    TOKEN=YOUR_BOT_TOKEN_HERE
    ```
-
+   • Replace the Owner ID(s) [here](https://github.com/sonujana26/olympus-bot/blob/main/utils/config.py#L7) (in `utils/config.py`).
 2. **Prefix:**
    Default Prefix: `$`
    > You can change prefix **[here](https://github.com/sonujana26/olympus-bot/blob/main/utils/Tools.py#L84)**.
