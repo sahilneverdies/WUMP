@@ -62,19 +62,19 @@ from .events.autoreact import AutoReactListener
 from .events.topgg import TopGG
 
 ########-------HELP-------########
-from .olympus.antinuke import sonu1
-from .olympus.extra import sonu11
-from .olympus.general import sonu111
-from .olympus.automod import sonu11111 
-from .olympus.moderation import sonu111111
-from .olympus.music import sonuMusic
-from .olympus.fun import sonu111111111
-from .olympus.games import sonu1111111111
-from .olympus.ignore import sonuIgnore
-from .olympus.server import sonu11111111111
-from .olympus.voice import sonu1111111111111 
-from .olympus.welcome import sonu11111111111111 
-from .olympus.giveaway import sonu11111111111111111
+from .olympus.antinuke import _antinuke
+from .olympus.extra import _extra
+from .olympus.general import _general
+from .olympus.automod import _automod 
+from .olympus.moderation import _moderation
+from .olympus.music import _music
+from .olympus.fun import _fun
+from .olympus.games import _games
+from .olympus.ignore import _ignore
+from .olympus.server import _server
+from .olympus.voice import _voice 
+from .olympus.welcome import _welcome 
+from .olympus.giveaway import _giveaway
 
 
 #########ANTINUKE#########
@@ -184,31 +184,28 @@ async def setup(bot: Olympus):
   await bot.add_cog(NoPrefix(bot))
   await bot.add_cog(FilterCog(bot))
   await bot.add_cog(Global(bot))
-  #await bot.add_cog(Activity(bot))
-####################
-
-
-
-  await bot.add_cog(sonu1(bot))
-  await bot.add_cog(sonu11111(bot))
-  await bot.add_cog(sonu11111111111(bot))
-  await bot.add_cog(sonu11(bot))  
-  await bot.add_cog(sonu111(bot))
-  await bot.add_cog(sonu111111(bot))
-  await bot.add_cog(sonuMusic(bot))
-  await bot.add_cog(sonu11111111111111111(bot))
-  await bot.add_cog(sonu111111111(bot))
-  await bot.add_cog(sonuIgnore(bot))
-  await bot.add_cog(sonu1111111111(bot))   
-  await bot.add_cog(sonu1111111111111(bot))
-  await bot.add_cog(sonu11111111111111(bot))
   await bot.add_cog(Map(bot))
+  #await bot.add_cog(Activity(bot))
 
 
 
+  await bot.add_cog(_antinuke(bot))
+  await bot.add_cog(_extra(bot))
+  await bot.add_cog(_general(bot))
+  await bot.add_cog(_automod(bot))  
+  await bot.add_cog(_moderation(bot))
+  await bot.add_cog(_music(bot))
+  await bot.add_cog(_fun(bot))
+  await bot.add_cog(_games(bot))
+  await bot.add_cog(_ignore(bot))
+  await bot.add_cog(_server(bot))
+  await bot.add_cog(_voice(bot))   
+  await bot.add_cog(_welcome(bot))
+  await bot.add_cog(_giveaway(bot))
+  
 
 
-###########################events################
+
 
   
   await bot.add_cog(AutoBlacklist(bot))
