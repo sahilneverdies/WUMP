@@ -29,7 +29,7 @@ pyttsx3
 PyYAML
 Requests
 openai
-duckduckgo-search
+duckduckgo-search==6.3.6
 pillow==11.0.0
 colorama
 chess
