@@ -124,8 +124,8 @@ class Giveaway(commands.Cog):
 
                     embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/1267699529130709075.png")
                     embed.set_footer(text=f"Ended at")
-                    await message.edit(content="<a:giftr_gift:1243960170216947774> **GIVEAWAY ENDED** <a:giftr_gift:1243960170216947774>", embed=embed)
-                    await message.reply(f"<a:olympus_celebrate:1276154653125509130> Congrats {winner}, you won **{giveaway[5]}!**, Hosted by <@{int(giveaway[3])}>")
+                    await message.edit(content="🎁 **GIVEAWAY ENDED** 🎁", embed=embed)
+                    await message.reply(f"💐 Congrats {winner}, you won **{giveaway[5]}!**, Hosted by <@{int(giveaway[3])}>")
                     await self.cursor.execute("DELETE FROM Giveaway WHERE message_id = ? AND guild_id = ?", (message.id, message.guild.id))
                     await self.connection.commit()
 
@@ -162,7 +162,7 @@ class Giveaway(commands.Cog):
         re = await self.cursor.fetchall()
 
         if winners >=  15:
-            embed = discord.Embed(title="<:olympus_notify:1227866804630720565> Access Denied",
+            embed = discord.Embed(title="⚠️ Access Denied",
                                   description=f"Cannot exceed more than 15 winners.",
                                   color=0x000000)
             message = await ctx.send(embed=embed)
@@ -172,7 +172,7 @@ class Giveaway(commands.Cog):
 
         g_list = [i[0] for i in re]
         if len(g_list) >= 5:
-            embed = discord.Embed(title="<:olympus_notify:1227866804630720565> Access Denied",
+            embed = discord.Embed(title="⚠️ Access Denied",
                                   description=f"You can only host upto 5 giveaways in this Guild.", color=0x000000)
             message = await ctx.send(embed=embed)
             await asyncio.sleep(5)
@@ -181,7 +181,7 @@ class Giveaway(commands.Cog):
 
         converted = self.convert(time)
         if converted / 60 >= 50400:
-            embed = discord.Embed(title="<:olympus_notify:1227866804630720565> Access Denied",
+            embed = discord.Embed(title="⚠️ Access Denied",
                                   description=f"Time cannot exceed 31 days!", color=0x000000)
             message = await ctx.send(embed=embed)
             await asyncio.sleep(5)
@@ -189,14 +189,14 @@ class Giveaway(commands.Cog):
             return
 
         if converted == -1:
-            embed = discord.Embed(title="<:olympus_cross:1227866668152393789>Error",
+            embed = discord.Embed(title="❌ Error",
                                   description=f"Invalid time format", color=0x000000)
             message = await ctx.send(embed=embed)
             await asyncio.sleep(5)
             await message.delete()
             return
         if converted == -2:
-            embed = discord.Embed(title="<:olympus_cross:1227866668152393789>Error",
+            embed = discord.Embed(title="❌ Error",
                                   description=f"Invalid time format. Please provide the time in numbers.",
                                   color=0x000000)
             message = await ctx.send(embed=embed)
@@ -206,8 +206,8 @@ class Giveaway(commands.Cog):
 
         ends = (datetime.datetime.now().timestamp() + converted)
 
-        embed = discord.Embed(title=f"<:giveaway:1267698826190262484> {prize}",
-                              description=f"Winner(s): **{winners}**\nReact with <:olympus_giveaway:1243956246961459220> to participate!\nEnds <t:{round(ends)}:R> (<t:{round(ends)}:f>)\n\nHosted by {ctx.author.mention}", color=0x000000)
+        embed = discord.Embed(title=f"🎁 {prize}",
+                              description=f"Winner(s): **{winners}**\nReact with 🎉 to participate!\nEnds <t:{round(ends)}:R> (<t:{round(ends)}:f>)\n\nHosted by {ctx.author.mention}", color=0x000000)
 
         ends1 = datetime.datetime.utcnow() + datetime.timedelta(seconds=converted)
         ends_utc = ends1.replace(tzinfo=datetime.timezone.utc)
@@ -216,7 +216,7 @@ class Giveaway(commands.Cog):
         embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/1267699441394126940.png")
         embed.set_footer(text=f"Ends at", icon_url=ctx.bot.user.avatar.url)
 
-        message = await ctx.send("<a:giftr_gift:1243960170216947774> **GIVEAWAY** <a:giftr_gift:1243960170216947774>", embed=embed)
+        message = await ctx.send("🎁 **GIVEAWAY** 🎁", embed=embed)
         try:
            await ctx.message.delete()
         except:
@@ -224,7 +224,7 @@ class Giveaway(commands.Cog):
 
         await self.cursor.execute("INSERT INTO Giveaway(guild_id, host_id, start_time, ends_at, prize, winners, message_id, channel_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?)", (ctx.guild.id, ctx.author.id, datetime.datetime.now(), ends, prize, winners, message.id, ctx.channel.id))
 
-        await message.add_reaction("<:olympus_giveaway:1243956246961459220>")
+        await message.add_reaction("🎉")
         await self.connection.commit()
 
     
@@ -255,7 +255,7 @@ class Giveaway(commands.Cog):
             try:
                 int(message_id)
             except ValueError:
-                embed = discord.Embed(title="<:olympus_notify:1227866804630720565> Access Denied",
+                embed = discord.Embed(title="⚠️ Access Denied",
                                       description="Invalid message ID provided.", color=0x000000)
                 message = await ctx.send(embed=embed)
                 await asyncio.sleep(5)
@@ -268,7 +268,7 @@ class Giveaway(commands.Cog):
             re = await self.cursor.fetchone()
 
             if re is None:
-                embed = discord.Embed(title="<:olympus_cross:1227866668152393789> Error",
+                embed = discord.Embed(title="❌ Error",
                                       description=f" The giveaway was not found.", color=0x000000)
                 message = await ctx.send(embed=embed)
                 await asyncio.sleep(5)
@@ -282,14 +282,14 @@ class Giveaway(commands.Cog):
             users.remove(self.bot.user.id)
 
             if len(users) < 1:
-                await ctx.send(f"<:olympus_tick:1227866641027698792> Successfully Ended the giveaway in <#{int(re[6])}>")
+                await ctx.send(f"✅ Successfully Ended the giveaway in <#{int(re[6])}>")
                 await message.reply(f"No one won the **{re[5]}** giveaway, due to Not enough participants.")
                 await self.cursor.execute("DELETE FROM Giveaway WHERE message_id = ? AND guild_id = ?", (message.id, message.guild.id))
                 return
 
             winner = ', '.join(f'<@!{i}>' for i in random.sample(users, k=int(re[4])))
 
-            embed = discord.Embed(title=f"<:giveaway:1267698826190262484> {re[5]}",
+            embed = discord.Embed(title=f"🎁 {re[5]}",
                         description=f"Ended at <t:{int(current_time)}:R>\nHosted by <@{int(re[3])}>\nWinner(s): {winner}",
                         color=0x000000
                     )
@@ -298,12 +298,12 @@ class Giveaway(commands.Cog):
             embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/1267699529130709075.png")
             embed.set_footer(text=f"Ended")
 
-            await message.edit(content="<a:giftr_gift:1243960170216947774> **GIVEAWAY ENDED** <a:giftr_gift:1243960170216947774>", embed=embed)
+            await message.edit(content="🎁 **GIVEAWAY ENDED** 🎁", embed=embed)
 
             if int(ctx.channel.id) != int(re[6]):
-                await ctx.send(f"<:olympus_tick:1227866641027698792> Successfully ended the giveaway in <#{int(re[6])}>")
+                await ctx.send(f"✅ Successfully ended the giveaway in <#{int(re[6])}>")
 
-            await message.reply(f"<a:olympus_celebrate:1276154653125509130> Congrats {winner}, you won **{re[5]}!**, Hosted by <@{int(re[3])}>")
+            await message.reply(f"💐 Congrats {winner}, you won **{re[5]}!**, Hosted by <@{int(re[3])}>")
             await self.cursor.execute("DELETE FROM Giveaway WHERE message_id = ? AND guild_id = ?", (message.id, message.guild.id))
             #print(f"[Gend] Giveaway Ended - {message.guild.name} ({message.guild.id}) - ({re[5]})")
 
@@ -329,7 +329,7 @@ class Giveaway(commands.Cog):
 
             winner = ', '.join(f'<@!{i}>' for i in random.sample(users, k=int(re[4])))
 
-            embed = discord.Embed(title=f"<:giveaway:1267698826190262484> {re[5]}",
+            embed = discord.Embed(title=f"🎁 {re[5]}",
                         description=f"Ended <t:{int(current_time)}:R>\nHosted by <@{int(re[3])}>\nWinner(s): {winner}",
                         color=0x000000
                     )
@@ -338,9 +338,9 @@ class Giveaway(commands.Cog):
             embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/1267699529130709075.png")
             embed.set_footer(text=f"Ended at")
 
-            await message.edit(content="<a:giftr_gift:1243960170216947774> **GIVEAWAY ENDED** <a:giftr_gift:1243960170216947774>", embed=embed)
+            await message.edit(content="🎁 **GIVEAWAY ENDED** 🎁", embed=embed)
 
-            await message.reply(f" <a:olympus_celebrate:1276154653125509130> Congrats {winner}, you won **{re[5]}!**, Hosted by <@{int(re[3])}>")
+            await message.reply(f"💐 Congrats {winner}, you won **{re[5]}!**, Hosted by <@{int(re[3])}>")
             await self.cursor.execute("DELETE FROM Giveaway WHERE message_id = ? AND guild_id = ?", (message.id, message.guild.id))
             #print(f"[Gend] Giveaway Ended - {message.guild.name} ({message.guild.id}) - ({re[5]})")
 
@@ -366,7 +366,7 @@ class Giveaway(commands.Cog):
         message = await ctx.fetch_message(message_id)
 
         if ctx.message.reference.resolved.author.id != self.bot.user.id :
-            embed = discord.Embed(title="<:olympus_notify:1227866804630720565> Access Denied",
+            embed = discord.Embed(title="⚠️ Access Denied",
                                   description=f"The giveaway was not found.", color=0x000000)
             message = await ctx.send(embed=embed)
             await asyncio.sleep(5)
@@ -378,7 +378,7 @@ class Giveaway(commands.Cog):
         re = await self.cursor.fetchone()
 
         if re is not None:
-            embed = discord.Embed(title="<:olympus_notify:1227866804630720565> Access Denied",
+            embed = discord.Embed(title="⚠️ Access Denied",
                                   description=f"The giveaway is currently running. Please use the `gend` command instead to end the giveaway.", color=0x000000)
             message = await ctx.send(embed=embed)
             await asyncio.sleep(5)
@@ -393,7 +393,7 @@ class Giveaway(commands.Cog):
             return
 
         winners = random.sample(users, k=1)
-        await message.reply(f"<a:olympus_celebrate:1276154653125509130> The new winner is "+", ".join(f"<@{i}>" for i in winners)+". Congratulations!")
+        await message.reply(f"💐 The new winner is "+", ".join(f"<@{i}>" for i in winners)+". Congratulations!")
         await self.connection.commit()
 
     def convert(self, time):
@@ -437,10 +437,3 @@ class Giveaway(commands.Cog):
             )
 
         await ctx.send(embed=embed)
-
-"""
-@Author: Sonu Jana
-    + Discord: me.sonu
-    + Community: https://discord.gg/odx (Olympus Development)
-    + for any queries reach out Community or DM me.
-"""
