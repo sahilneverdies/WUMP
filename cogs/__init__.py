@@ -59,7 +59,7 @@ from .events.greet2 import greet
 from .events.mention import Mention
 from .events.react import React
 from .events.autoreact import AutoReactListener
-from .events.topgg import TopGG
+#from .events.topgg import TopGG
 
 ########-------HELP-------########
 from .olympus.antinuke import _antinuke
