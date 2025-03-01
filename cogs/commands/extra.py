@@ -7,7 +7,7 @@ from discord.ui import Button, View
 import psutil
 import time
 from utils.Tools import *
-from discord.ext import commands, menus
+from discord.ext import commands
 from discord.ext.commands import BucketType, cooldown
 import requests
 from typing import *
@@ -519,13 +519,13 @@ class Extra(commands.Cog):
       f"`#{no}.` [{mem}](https://discord.com/users/{mem.id}) [{mem.mention}] - <t:{round(mem.premium_since.timestamp())}:R>"
       for no, mem in enumerate(guild.premium_subscribers, start=1)
     ]
-    paginator = Paginator(source=DescriptionEmbedPaginator(
+    embeds = DescriptionEmbedPaginator(
       entries=entries,
       title=
       f"List of Boosters in {guild.name} - {len(guild.premium_subscribers)}",
       description="",
-      per_page=10),
-                          ctx=ctx)
+      per_page=10).get_pages()
+    paginator = Paginator(ctx, embeds)
     await paginator.paginate()
 
   @__list_.command(name="bans", help= "List of all banned members in Guild", aliases=["ban"], with_app_command=True)
@@ -547,12 +547,12 @@ class Extra(commands.Cog):
       f"`#{no}.` {mem}"
       for no, mem in enumerate(mems, start=1)
     ]
-      paginator = Paginator(source=DescriptionEmbedPaginator(
+      embeds = DescriptionEmbedPaginator(
       entries=entries,
       title=f"Banned Users in {guild.name} - {len(bans)}",
       description="",
-      per_page=10),
-                          ctx=ctx)
+      per_page=10).get_pages()
+      paginator = Paginator(ctx, embeds)
       await paginator.paginate()
 
   @__list_.command(
@@ -569,12 +569,12 @@ class Extra(commands.Cog):
       f"`#{no}.` [{mem}](https://discord.com/users/{mem.id}) [{mem.mention}] - <t:{int(mem.created_at.timestamp())}:D>"
       for no, mem in enumerate(role.members, start=1)
     ]
-    paginator = Paginator(source=DescriptionEmbedPaginator(
+    embeds = DescriptionEmbedPaginator(
       entries=entries,
       title=f"List of Members in {role} - {len(role.members)}",
       description="",
-      per_page=10),
-                          ctx=ctx)
+      per_page=10).get_pages()
+    paginator = Paginator(ctx, embeds)
     await paginator.paginate()
 
   @__list_.command(name="emojis",
@@ -590,12 +590,12 @@ class Extra(commands.Cog):
       f"`#{no}.` {e} - `{e}`"
       for no, e in enumerate(ctx.guild.emojis, start=1)
     ]
-    paginator = Paginator(source=DescriptionEmbedPaginator(
+    embeds = DescriptionEmbedPaginator(
       entries=entries,
       title=f"List of Emojis in {guild.name} - {len(ctx.guild.emojis)}",
       description="",
-      per_page=10),
-                          ctx=ctx)
+      per_page=10).get_pages()
+    paginator = Paginator(ctx, embeds)
     await paginator.paginate()
 
   @__list_.command(name="roles",
@@ -612,12 +612,12 @@ class Extra(commands.Cog):
       f"`#{no}.` {e.mention} - `[{e.id}]`"
       for no, e in enumerate(ctx.guild.roles, start=1)
     ]
-    paginator = Paginator(source=DescriptionEmbedPaginator(
+    embeds = DescriptionEmbedPaginator(
       entries=entries,
       title=f"List of Roles in {guild.name} - {len(ctx.guild.roles)}",
       description="",
-      per_page=10),
-                          ctx=ctx)
+      per_page=10).get_pages()
+    paginator = Paginator(ctx, embeds)
     await paginator.paginate()
 
   @__list_.command(name="bots",
@@ -635,12 +635,12 @@ class Extra(commands.Cog):
       f"`#{no}.` [{mem}](https://discord.com/users/{mem.id}) [{mem.mention}]"
       for no, mem in enumerate(people, start=1)
     ]
-    paginator = Paginator(source=DescriptionEmbedPaginator(
+    embeds = DescriptionEmbedPaginator(
       entries=entries,
       title=f"Bots in {guild.name} - {len(people)}",
       description="",
-      per_page=10),
-                          ctx=ctx)
+      per_page=10).get_pages()
+    paginator = Paginator(ctx, embeds)
     await paginator.paginate()
 
   @__list_.command(name="admins",
@@ -665,12 +665,12 @@ class Extra(commands.Cog):
       f"`#{no}.` [{mem}](https://discord.com/users/{mem.id}) [{mem.mention}] - <t:{int(mem.created_at.timestamp())}:D>"
       for no, mem in enumerate(mems, start=1)
     ]
-    paginator = Paginator(source=DescriptionEmbedPaginator(
+    embeds = DescriptionEmbedPaginator(
       entries=entries,
       title=f"Admins in {guild.name} - {admins}",
       description="",
-      per_page=10),
-                          ctx=ctx)
+      per_page=10).get_pages()
+    paginator = Paginator(ctx, embeds)
     await paginator.paginate()
 
   @__list_.command(name="invoice", help="List of all users in a voice channel", aliases=["invc"], with_app_command=True)
@@ -685,12 +685,12 @@ class Extra(commands.Cog):
       f"`[{n}]` | {member} [{member.mention}]"
       for n, member in enumerate(members, start=1)
     ]
-    paginator = Paginator(source=DescriptionEmbedPaginator(
+    embeds = DescriptionEmbedPaginator(
       entries=entries,
       description="",
       title=f"Voice List of {ctx.author.voice.channel.name} - {len(members)}",
-      color=self.color),
-                          ctx=ctx)
+      color=self.color).get_pages()
+    paginator = Paginator(ctx, embeds)
     await paginator.paginate()
 
   @__list_.command(name="moderators", help= "List of All Admins of a server", aliases=["mods"], with_app_command=True)
@@ -715,12 +715,12 @@ class Extra(commands.Cog):
       f"`#{no}.` [{mem}](https://discord.com/users/{mem.id}) [{mem.mention}] - <t:{int(mem.created_at.timestamp())}:D>"
       for no, mem in enumerate(mems, start=1)
     ]
-    paginator = Paginator(source=DescriptionEmbedPaginator(
+    embeds = DescriptionEmbedPaginator(
       entries=entries,
       title=f"Mods in {guild.name} - {admins}",
       description="",
-      per_page=10),
-                          ctx=ctx)
+      per_page=10).get_pages()
+    paginator = Paginator(ctx, embeds)
     await paginator.paginate()
 
   @__list_.command(name="early", aliases=["sup"], help= "List of members that have Early Supporter badge.", with_app_command=True)
@@ -742,12 +742,12 @@ class Extra(commands.Cog):
       f"`#{no}.` [{mem}](https://discord.com/users/{mem.id})  [{mem.mention}] - <t:{int(mem.created_at.timestamp())}:D>"
       for no, mem in enumerate(mems, start=1)
     ]
-    paginator = Paginator(source=DescriptionEmbedPaginator(
+    embeds = DescriptionEmbedPaginator(
       entries=entries,
       title=f"Early Supporters Id's in {guild.name} - {admins}",
       description="",
-      per_page=10),
-                          ctx=ctx)
+      per_page=10).get_pages()
+    paginator = Paginator(ctx, embeds)
     await paginator.paginate()
 
   @__list_.command(name="activedeveloper", help= "List of members that have Active Developer badge.",
@@ -771,12 +771,12 @@ class Extra(commands.Cog):
       f"`#{no}.` [{mem}](https://discord.com/users/{mem.id}) [{mem.mention}] - <t:{int(mem.created_at.timestamp())}:D>"
       for no, mem in enumerate(mems, start=1)
     ]
-    paginator = Paginator(source=DescriptionEmbedPaginator(
+    embeds = DescriptionEmbedPaginator(
       entries=entries,
       title=f"Active Developer Id's in {guild.name} - {admins}",
       description="",
-      per_page=10),
-                          ctx=ctx)
+      per_page=10).get_pages()
+    paginator = Paginator(ctx, embeds)
     await paginator.paginate()
 
   @__list_.command(name="createdat", help= "List of Account Creation Date of all Users", with_app_command=True)
@@ -792,12 +792,12 @@ class Extra(commands.Cog):
       f"`[{no}]` | [{mem}](https://discord.com/users/{mem.id}) - <t:{int(mem.created_at.timestamp())}:D>"
       for no, mem in enumerate(mems, start=1)
     ]
-    paginator = Paginator(source=DescriptionEmbedPaginator(
+    embeds = DescriptionEmbedPaginator(
       entries=entries,
       title=f"Creation every id in {guild.name} - {admins}",
       description="",
-      per_page=10),
-                          ctx=ctx)
+      per_page=10).get_pages()
+    paginator = Paginator(ctx, embeds)
     await paginator.paginate()
 
   @__list_.command(name="joinedat", help= "List of Guild Joined date of all Users", with_app_command=True)
@@ -813,12 +813,12 @@ class Extra(commands.Cog):
       f"`#{no}.` [{mem}](https://discord.com/users/{mem.id}) Joined At - <t:{int(mem.joined_at.timestamp())}:D>"
       for no, mem in enumerate(mems, start=1)
     ]
-    paginator = Paginator(source=DescriptionEmbedPaginator(
+    embeds = DescriptionEmbedPaginator(
       entries=entries,
       title=f"Join Position of every user in {guild.name} - {admins}",
       description="",
-      per_page=10),
-                          ctx=ctx)
+      per_page=10).get_pages()
+    paginator = Paginator(ctx, embeds)
     await paginator.paginate()
 
 
