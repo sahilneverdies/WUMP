@@ -1,17 +1,15 @@
 Quart
-discord
 discord.py
 discord.ui
 jishaku
 asyncio
-discord-ext-menus
+discord-ext-pages
 aiohttp
 datetime
 flask
 typing
 psutil
 collection
-requests
 pathlib
 pymongo
 wavelink
@@ -27,7 +25,7 @@ langdetect
 python-dotenv
 pyttsx3
 PyYAML
-Requests
+requests
 openai
 duckduckgo-search==6.3.6
 pillow==11.0.0
