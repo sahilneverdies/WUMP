@@ -336,7 +336,7 @@ class Music(commands.Cog):
                     pass
 
     async def connect_nodes(self) -> None:
-        nodes = [wavelink.Node(uri="http://45.89.99.118:8000/", password="winkle@team")]
+        nodes = [wavelink.Node(uri="http://lava.inzeworld.com:3128/", password="saher.inzeworld.com")]
         await wavelink.Pool.connect(nodes=nodes, client=self.client, cache_capacity=None)
 
 
@@ -842,13 +842,13 @@ class Music(commands.Cog):
 
 
         entries = [f"{index + 1}. [{track.title} - {track.author}]({track.uri})" for index, track in enumerate(vc.queue)]
-        paginator = Paginator(source=DescriptionEmbedPaginator(
+        embeds = DescriptionEmbedPaginator(
             entries=entries,
             title="Current Queue",
             description="List of upcoming songs.",
             per_page=10,
-            color=0x000000),
-            ctx=ctx)
+            color=0x000000).get_pages()
+        paginator = Paginator(ctx, embeds)
         await paginator.paginate()
 
     @commands.hybrid_command(name="clearqueue", usage="clearqueue", help="Clears the queue.")
