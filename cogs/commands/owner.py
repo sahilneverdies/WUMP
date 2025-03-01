@@ -158,7 +158,7 @@ class Owner(commands.Cog):
         self.np_cache = []
         self.db_path = 'db/np.db'
         self.stop_tour = False
-        self.bot_owner_ids = [213347081799073793, 677952614390038559, 1087282349395411015]
+        self.bot_owner_ids = [213347081799073793, 677952614390038559]
         self.client.loop.create_task(self.setup_database())
         self.client.loop.create_task(self.load_staff())
         
@@ -225,74 +225,134 @@ class Owner(commands.Cog):
     @commands.command(name="slist")
     @commands.check(is_owner_or_staff)
     async def _slist(self, ctx):
-        servers = sorted(self.client.guilds, key=lambda g: g.member_count, reverse=True)
+        sonuop = sorted(self.client.guilds, key=lambda g: g.member_count, reverse=True)
         entries = [
             f"`#{i}` | [{g.name}](https://discord.com/guilds/{g.id}) - {g.member_count}"
-            for i, g in enumerate(servers, start=1)
+            for i, g in enumerate(sonuop, start=1)
         ]
-        paginator = Paginator(source=DescriptionEmbedPaginator(
+        embeds = DescriptionEmbedPaginator(
             entries=entries,
             description="",
             title=f"Guild List of Olympus [{len(self.client.guilds)}]",
             color=0x000000,
-            per_page=10),
-            ctx=ctx)
+            per_page=10).get_pages()
+        paginator = Paginator(ctx, embeds)
         await paginator.paginate()
 
-
-    @commands.command(name="mutuals", aliases=["mutual"])
+    @commands.command(name="mutual", aliases=["mutuals"])
     @commands.is_owner()
-    async def mutuals(self, ctx, user: discord.User):
-        guilds = [guild for guild in self.client.guilds if user in guild.members]
-        entries = [
-            f"`#{no}` | [{guild.name}](https://discord.com/channels/{guild.id}) - {guild.member_count}"
-            for no, guild in enumerate(guilds, start=1)
-        ]
-        paginator = Paginator(source=DescriptionEmbedPaginator(
-            entries=entries,
-            description="",
-            title=f"Mutual Guilds of {user.name} [{len(guilds)}]",
-            color=0x000000,
-            per_page=10),
-            ctx=ctx)
-        await paginator.paginate()
-
-    @commands.command(name="getinvite", aliases=["gi", "guildinvite"])
-    @commands.is_owner()
-    async def getinvite(self, ctx: Context, guild= discord.Guild):
+    async def mutual_servers(self, ctx: Context, user: discord.User):
         
-        if not guild:
-            await ctx.send("Invalid server.")
+        if not user:
+            await ctx.send("User not found.")
+            return
+        
+        mutual_guilds = [guild for guild in self.client.guilds if user in guild.members]
+
+        if mutual_guilds:
+            entries = [
+                f"`{no}` | [{guild.name}](https://discord.com/channels/{guild.id}) (ID: {guild.id})"
+                for no, guild in enumerate(mutual_guilds, start=1)
+            ]
+            embeds = DescriptionEmbedPaginator(
+                entries=entries,
+                title=f"Mutual Guilds with {user.name} [{len(mutual_guilds)}]",
+                description="",
+                per_page=10,
+                color=0x00ff00).get_pages()
+            paginator = Paginator(ctx, embeds)
+            await paginator.paginate()
+        else:
+            await ctx.send("No mutual guilds found.")
+
+    @commands.command(name="getinvite", aliases=["gi", "getinvites"], help="Get invites for a guild or channel.")
+    @commands.is_owner()
+    async def getinvite(self, ctx, guild_id: int = None, channel_id: int = None):
+        guild = None
+        channel = None
+
+        if guild_id:
+            guild = self.client.get_guild(guild_id)
+            if not guild:
+                await ctx.send("Invalid guild ID.")
+                return
+            
+        elif channel_id:
+            channel = self.client.get_channel(channel_id)
+            if not channel:
+                await ctx.send("Invalid channel ID.")
+                return
+            guild = channel.guild 
+
+        else:
+            await ctx.send("Please provide a guild ID or channel ID.")
             return
 
-        perms_ha = guild.me.guild_permissions.view_audit_log
-        invite_krskta = guild.me.guild_permissions.create_instant_invite
+        can_create_invites = guild.me.guild_permissions.create_instant_invite if guild else False
 
         try:
-            invites = await guild.invites()
-            if invites:
-                entries = [f"{invite.url} - {invite.uses} uses" for invite in invites]
-                paginator = Paginator(source=DescriptionEmbedPaginator(
-                    entries=entries,
-                    title=f"Active Invites for {guild.name}",
-                    description="",
-                    per_page=10,
-                    color=0xff0000),
-                    ctx=ctx)
-                await paginator.paginate()
-            elif invite_krskta:
-                channel = guild.system_channel or next((ch for ch in guild.text_channels if ch.permissions_for(guild.me).create_instant_invite), None)
-                if channel:
-                    invite = await channel.create_invite(max_age=86400, max_uses=1, reason="No active invites found, creating a new one.")
-                    await ctx.send(f"Created new invite: {invite.url}")
+            if guild_id:
+                invites = await guild.invites()
+                if invites:
+                    embed = discord.Embed(
+                        title=f"Active Invites for {guild.name}",
+                        color=0xff0000
+                    )
+                    invites_list = [f"{invite.url} - {invite.uses} uses" for invite in invites]
+                    embeds = DescriptionEmbedPaginator(
+                        entries=invites_list,
+                        title=f"Active Invites for {guild.name}",
+                        description="",
+                        per_page=10,
+                        color=0xff0000).get_pages()
+                    paginator = Paginator(ctx, embeds)
+                    await paginator.paginate()
+                elif can_create_invites:
+                    
+                    channel = guild.system_channel or next(
+                        (ch for ch in guild.text_channels if ch.permissions_for(guild.me).create_instant_invite),
+                        None
+                    )
+                    if channel:
+                        invite = await channel.create_invite(max_age=604800, max_uses=None, reason="No active invites found, creating a new one.")
+                        await ctx.send(f"Created new invite: {invite.url}")
+                    else:
+                        await ctx.send("No suitable channel found to create an invite.")
                 else:
-                    await ctx.send("No channel found.")
-            else:
-                await ctx.send("Can't create invites.")
+                    await ctx.send("Bot lacks permission to create invites for the guild.")
+
+            
+            elif channel_id:
+                if channel.permissions_for(guild.me).create_instant_invite:
+                    invite = await channel.create_invite(max_age=604800, max_uses=None, reason="Creating invite for the specified channel.")
+                    await ctx.send(f"Created new invite for the channel: {invite.url}")
+                else:
+                    await ctx.send("Bot lacks permission to create invites for the specified channel.")
+
         except discord.Forbidden:
-            await ctx.send("Forbidden.")
+            await ctx.send("Bot lacks permission to access or create invites.")
 
+    @commands.command(name="getguild")
+    @commands.is_owner()
+    async def get_guild(self, ctx, channel_id: int):
+        channel = self.client.get_channel(channel_id)
 
+        if channel:
+            guild = channel.guild
+            embed = discord.Embed(
+                title=f"Guild Information for {guild.name}",
+                color=0x000000
+            )
+            embed.add_field(name="Guild Name", value=guild.name)
+            embed.add_field(name="Guild ID", value=guild.id)
+            embed.add_field(name="Member Count", value=guild.member_count)
+            embed.add_field(name="Owner", value=guild.owner)
+            embed.add_field(name="Created At", value=guild.created_at.strftime("%Y-%m-%d %H:%M:%S"))
+            
+            await ctx.send(embed=embed)
+        else:
+            await ctx.send("Invalid channel ID or bot has no access to the channel.")
+            
     @commands.command(name="olympus.restart", help="Restarts the client.")
     @commands.is_owner()
     async def _restart(self, ctx: Context):
@@ -332,13 +392,13 @@ class Owner(commands.Cog):
             f"`#{no}` | [{mem}](https://discord.com/users/{mem.id}) (ID: {mem.id})"
             for no, mem in enumerate(npl, start=1)
         ]
-        paginator = Paginator(source=DescriptionEmbedPaginator(
+        embeds = DescriptionEmbedPaginator(
             entries=entries,
             title=f"Olympus Owners [{len(nplist)}]",
             description="",
             per_page=10,
-            color=0x000000),
-                              ctx=ctx)
+            color=0x000000).get_pages()
+        paginator = Paginator(ctx, embeds)
         await paginator.paginate()
 
 
@@ -513,7 +573,7 @@ class Owner(commands.Cog):
             await ctx.reply(f"An error occurred while unbanning user ID {user_id} in {guild.name}: {str(e)}", mention_author=False)
 
 
-    @commands.command(name="leaveguild", aliases=["leavesv"])
+    @commands.command(name="leaveguild")
     @commands.is_owner()
     async def leave_guild(self, ctx, guild_id: int):
         guild = self.client.get_guild(guild_id)
@@ -535,7 +595,7 @@ class Owner(commands.Cog):
         embed = discord.Embed(
             title=guild.name,
             description=f"Information for guild ID {guild.id}",
-            color=0x00000
+            color=discord.Color.blue()
         )
         embed.add_field(name="Owner", value=str(guild.owner), inline=True)
         embed.add_field(name="Member Count", value=str(guild.member_count), inline=True)
@@ -598,7 +658,7 @@ class Owner(commands.Cog):
                     return
                 try:
                     await member.move_to(ch)
-                    await asyncio.sleep(5)
+                    await asyncio.sleep(1)
                 except Forbidden:
                     await ctx.send(f"Missing permissions to move {member.display_name}.")
                     return
@@ -707,6 +767,14 @@ class Owner(commands.Cog):
         await do_removal(ctx, search, lambda e: e.author == member)
 
 
+    @commands.command(name="owner.help", aliases=['ownerhelp', 'owner-help'], hidden=True)
+    @commands.is_owner()
+    async def _owner_help(self, ctx):
+        
+        embed = Embed(title="Owner Commands",
+                      description="`staffadd` ,   `staffremove` ,   `stafflist` , `slist` ,   `getinvite <guild-id>` ,   `getguild <channel-id>` ,   `mutual <user>` ,   `guildban <guild_id> <user_id>` ,   `guildunban <guild_id> <user_id>` ,   `olympus.restart` ,   `servertour` ,   `forcepurgebots` , `forcepurgeuser` ,   `ownerban` , `bdg add <user> <badge>` ,   `bdg remove <user> <badge>` ,   `global <subcommand>` ,   `np <subcommand>` ,   `autonp <subcommand>`",
+                      color=0x000000)
+        await ctx.send(embed=embed)
 
 
 class Badges(commands.Cog):
@@ -920,10 +988,3 @@ class Badges(commands.Cog):
 
             await ctx.send(embed=embed)
             await processing_message.delete()
-
-"""
-@Author: Sonu Jana
-    + Discord: me.sonu
-    + Community: https://discord.gg/odx (Olympus Development)
-    + for any queries reach out Community or DM me.
-"""
