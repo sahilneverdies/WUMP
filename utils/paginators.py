@@ -1,7 +1,6 @@
 from __future__ import annotations
 import os
 from utils.config import BotName
-from discord.ext import pages
 from discord.ext import commands
 from discord.ext.commands import Context, Paginator as CmdPaginator
 from typing import Any, List
