@@ -2,7 +2,7 @@ from __future__ import annotations
 import asyncio
 from typing import Any, Dict, Optional
 import discord
-from discord.ext import commands, pages
+from discord.ext import commands
 from discord import Interaction, ButtonStyle
 
 
