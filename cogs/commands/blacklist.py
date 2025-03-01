@@ -1,32 +1,35 @@
 import discord
 from discord.ext import commands
-from discord.ext import menus
 import aiosqlite
 import os
 from utils.Tools import *
 from typing import Union
 from utils.paginator import Paginator as sonu
 
- 
-class BlacklistWordSource(menus.ListPageSource):
-    def __init__(self, data):
-        super().__init__(data, per_page=4)
+class BlacklistWordPaginator:
+    def __init__(self, entries):
+        self.entries = entries
+        self.per_page = 4
+        self.embeds = self.get_pages()
 
-    async def format_page(self, menu, entries):
-        embed = discord.Embed(
-            title="Blacklist Word [7]",
-            description="< > Duty | [ ] Optional",
-            color=0x000000
-        )
-        for entry in entries:
-            embed.add_field(name="",value=entry, inline=False)
+    def get_pages(self):
+        pages = []
+        total_pages = (len(self.entries) // self.per_page) + (1 if len(self.entries) % self.per_page else 0)
 
-        embed.set_footer(
-            text='Users having Administrator can use Blacklisted Word',
-            icon_url="https://cdn.discordapp.com/emojis/1238637578840969289.png?width=115&height=115"
-        )
-        return embed
+        for i in range(0, len(self.entries), self.per_page):
+            embed = discord.Embed(
+                title="Blacklist Word Commands",
+                description="\n".join(self.entries[i:i + self.per_page]),
+                color=0x000000
+            )
 
+            embed.set_footer(
+                text=f'Page {i // self.per_page + 1}/{total_pages} | Users having Administrator can use Blacklisted Word',
+                icon_url="https://cdn.discordapp.com/avatars/1144179659735572640/a_f061e6472786781e23bac32fa8d0a667.png?width=115&height=115"
+            )
+            pages.append(embed)
+
+        return pages
 
 DB_PATH = "db/blword.db"
 
@@ -186,20 +189,16 @@ class Blacklist(commands.Cog):
     @commands.cooldown(1, 3, commands.BucketType.user)
     async def blacklistword(self, ctx):
         commands_list = [
-            "➜ `blacklistword add <word>` - Add a word to the blacklist.",
-            "➜ `blacklistword remove <word>` - Remove a word from the blacklist.",
-            "➜ `blacklistword reset` - Clear all blacklisted words for the guild.",
-            "➜ `blacklistword config` - Show the list of blacklisted words for the guild.",
-            "➜ `blacklistword bypass add <role>/<user>` - Add a role/user to the bypass list.",
-            "➜ `blacklistword bypass remove <role>/<user>` - Remove a role/user from the bypass list.",
+            "➜ `blacklistword add <word>` - Add a word to the blacklist.\n",
+            "➜ `blacklistword remove <word>` - Remove a word from the blacklist.\n",
+            "➜ `blacklistword reset` - Clear all blacklisted words for the guild.\n",
+            "➜ `blacklistword config` - Show the list of blacklisted words for the guild.\n",
+            "➜ `blacklistword bypass add <role>/<user>` - Add a role/user to the bypass list.\n",
+            "➜ `blacklistword bypass remove <role>/<user>` - Remove a role/user from the bypass list.\n",
             "➜ `blacklistword bypass list` - Show the list of bypassed roles/users."
         ]
 
-        paginator = sonu(
-            source=BlacklistWordSource(commands_list),
-            ctx=ctx
-        )
-
+        paginator = sonu(ctx, BlacklistWordPaginator(commands_list).embeds)
         await paginator.paginate()
     @blacklistword.command(name="add")
     @blacklist_check()
@@ -445,12 +444,3 @@ class Blacklist(commands.Cog):
                     color=discord.Color.from_rgb(0, 0, 0)
                 )
                 await ctx.reply(embed=embed)
-
-
-
-"""
-@Author: Sonu Jana
-    + Discord: me.sonu
-    + Community: https://discord.gg/odx (Olympus Development)
-    + for any queries reach out support or DM me.
-"""
