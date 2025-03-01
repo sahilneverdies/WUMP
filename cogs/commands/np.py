@@ -246,13 +246,13 @@ class NoPrefix(commands.Cog):
                     f"`#{no+1}`  [Profile URL](https://discord.com/users/{mem}) (ID: {mem})"
                     for no, mem in enumerate(ids, start=0)
                 ]
-                paginator = Paginator(source=DescriptionEmbedPaginator(
+                embeds = DescriptionEmbedPaginator(
                     entries=entries,
                     title=f"No Prefix Users [{len(ids)}]",
                     description="",
                     per_page=10,
-                    color=0x000000),
-                    ctx=ctx)
+                    color=0x000000).get_pages()
+                paginator = Paginator(ctx, embeds)
                 await paginator.paginate()
 
     
@@ -527,10 +527,3 @@ class NoPrefix(commands.Cog):
                 role = guild.get_role(1295883122902302771)
                 if role and role in member.roles:
                     await member.remove_roles(role)
-
-"""
-@Author: Sonu Jana
-    + Discord: me.sonu
-    + Community: https://discord.gg/odx (Olympus Development)
-    + for any queries reach out Community or DM me.
-"""
