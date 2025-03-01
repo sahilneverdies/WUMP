@@ -113,14 +113,13 @@ class Block(commands.Cog):
         except discord.NotFound:
           blacklist.append(f"User ID: {user_id} (User not found)")
       entries = [f"{index+1}. {user}" for index, user in enumerate(blacklist)]
-      paginator = Paginator(source=DescriptionEmbedPaginator(
+      embeds = DescriptionEmbedPaginator(
         entries=entries,
         title=f"List of Blacklisted Users - {len(blacklist)}",
         description="",
         per_page=10,
-        color=0x000000),
-        ctx=ctx
-      )
+        color=0x000000).get_pages()
+      paginator = Paginator(ctx, embeds)
       await paginator.paginate()
 
   @blacklist.group(name="guild", help="Add/Remove a guild to the blacklist.", invoke_without_command=True)
@@ -201,14 +200,13 @@ class Block(commands.Cog):
         except discord.NotFound:
           blacklist.append(f"Guild ID: {guild_id} (Guild not found)")
       entries = [f"{index+1}. {guild}" for index, guild in enumerate(blacklist)]
-      paginator = Paginator(source=DescriptionEmbedPaginator(
+      embeds = DescriptionEmbedPaginator(
         entries=entries,
         title=f"List of Blacklisted Guilds - {len(blacklist)}",
         description="",
         per_page=10,
-        color=0x000000),
-        ctx=ctx
-      )
+        color=0x000000).get_pages()
+      paginator = Paginator(ctx, embeds)
       await paginator.paginate()
 
 
