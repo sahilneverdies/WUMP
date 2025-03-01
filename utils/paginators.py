@@ -1,96 +1,70 @@
 from __future__ import annotations
-import os 
-import discord
+import os
 from utils.config import BotName
-try:
-    from discord.ext import menus
-    from discord.ext import commands
-except ModuleNotFoundError:
-    os.system("pip install git+https://github.com/Rapptz/discord-ext-menus")
-
-from .paginator import Paginator as EmbedPaginator
+from discord.ext import pages
+from discord.ext import commands
 from discord.ext.commands import Context, Paginator as CmdPaginator
 from typing import Any, List
 
 
-class FieldPagePaginator(menus.ListPageSource):
-
-    def __init__(self,
-                 entries: list[tuple[Any, Any]],
-                 *,
-                 per_page: int = 10,
-                 inline: bool = False,
-                 **kwargs) -> None:
-        super().__init__(entries, per_page=per_page)
-        self.embed: discord.Embed = discord.Embed(
+class FieldPagePaginator:
+    def __init__(self, entries: list[tuple[Any, Any]], *, per_page: int = 10, inline: bool = False, **kwargs):
+        self.entries = entries
+        self.per_page = per_page
+        self.inline = inline
+        self.embed = discord.Embed(
             title=kwargs.get('title'),
             description=kwargs.get('description'),
-            color=0x000000)
-        self.inline: bool = inline
-
-    async def format_page(self, menu: EmbedPaginator,
-                          entries: list[tuple[Any, Any]]) -> discord.Embed:
-        self.embed.clear_fields()
-
-        for key, value in entries:
-            self.embed.add_field(name=key, value=value, inline=self.inline)
-
-        maximum = self.get_max_pages()
-        if maximum > 1:
-            text = f'• Page {menu.current_page + 1}/{maximum} | Requested by {menu.ctx.author.display_name}'
-            self.embed.set_footer(
-                text=text,
-                icon_url=
-                "https://cdn.discordapp.com/icons/699587669059174461/f689b4366447d5a23eda8d0ec749c1ba.png?width=115&height=115"
-            )
-            #self.embed.timestamp = discord.utils.utcnow()
-        return self.embed
-
-
-class TextPaginator(menus.ListPageSource):
-
-    def __init__(self, text, *, prefix='```', suffix='```', max_size=2000):
-        pages = CmdPaginator(prefix=prefix,
-                             suffix=suffix,
-                             max_size=max_size - 200)
-        for line in text.split('\n'):
-            pages.add_line(line)
-
-        super().__init__(entries=pages.pages, per_page=1)
-
-    async def format_page(self, menu, content):
-        maximum = self.get_max_pages()
-        if maximum > 1:
-            return f'{content} {BotName} • Page {menu.current_page + 1}/{maximum}'
-        return content
-
-
-class DescriptionEmbedPaginator(menus.ListPageSource):
-
-    def __init__(self,
-                 entries: list[Any],
-                 *,
-                 per_page: int = 10,
-                 **kwargs) -> None:
-        super().__init__(entries, per_page=per_page)
-        self.embed: discord.Embed = discord.Embed(
-            title=kwargs.get('title'),
-            color=0x000000,
+            color=0x000000
         )
 
-    async def format_page(self, menu: EmbedPaginator,
-                          entries: list[tuple[Any, Any]]) -> discord.Embed:
-        self.embed.clear_fields()
+    def get_pages(self):
+        pages_list = []
+        for i in range(0, len(self.entries), self.per_page):
+            embed = self.embed.copy()
+            embed.clear_fields()
+            for key, value in self.entries[i:i + self.per_page]:
+                embed.add_field(name=key, value=value, inline=self.inline)
 
-        self.embed.description = '\n'.join(entries)
-        #self.embed.timestamp = discord.utils.utcnow()
-        maximum = self.get_max_pages()
-        if maximum > 1:
-            text = f'• Page {menu.current_page + 1}/{maximum} | Requested by {menu.ctx.author.display_name}'
-            self.embed.set_footer(
-                text=text,
-                icon_url=
-                "https://cdn.discordapp.com/icons/699587669059174461/f689b4366447d5a23eda8d0ec749c1ba.png?width=115&height=115"
-            )
+            total_pages = len(self.entries) // self.per_page + (1 if len(self.entries) % self.per_page else 0)
+            if total_pages > 1:
+                embed.set_footer(
+                    text=f'• Page {i // self.per_page + 1}/{total_pages} | Olympus Development™',
+                    icon_url="https://cdn.discordapp.com/avatars/1144179659735572640/a_f061e6472786781e23bac32fa8d0a667.png?width=115&height=115"
+                )
+            pages_list.append(embed)
+        return pages_list
 
-        return self.embed
+
+class TextPaginator:
+    def __init__(self, text, *, prefix='```', suffix='```', max_size=2000):
+        self.pages = []
+        paginator = CmdPaginator(prefix=prefix, suffix=suffix, max_size=max_size - 200)
+        for line in text.split('\n'):
+            paginator.add_line(line)
+        self.pages = paginator.pages
+
+    def get_pages(self):
+        return [discord.Embed(description=page) for page in self.pages]
+
+
+class DescriptionEmbedPaginator:
+    def __init__(self, entries: list[Any], *, per_page: int = 10, **kwargs):
+        self.entries = entries
+        self.per_page = per_page
+        self.embed = discord.Embed(title=kwargs.get('title'), color=0x000000)
+
+    def get_pages(self):
+        pages_list = []
+        for i in range(0, len(self.entries), self.per_page):
+            embed = self.embed.copy()
+            embed.description = '\n'.join(self.entries[i:i + self.per_page])
+
+            total_pages = len(self.entries) // self.per_page + (1 if len(self.entries) % self.per_page else 0)
+            if total_pages > 1:
+                embed.set_footer(
+                    text=f'• Page {i // self.per_page + 1}/{total_pages} | Olympus Development™',
+                    icon_url="https://cdn.discordapp.com/avatars/1144179659735572640/a_f061e6472786781e23bac32fa8d0a667.png?width=115&height=115"
+                )
+            pages_list.append(embed)
+        return pages_list
