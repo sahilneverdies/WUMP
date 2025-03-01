@@ -19,7 +19,7 @@ class Global(commands.Cog):
             await ctx.send_help(ctx.command)
             ctx.command.reset_cooldown(ctx)
 
-    @commands.command(name="brahmastra",help="Bans the user from all mutual guilds.")
+    @commands.command(name="globalban",help="Bans the user from all mutual guilds.")
     @commands.is_owner()
     async def global_ban(self, ctx: commands.Context, user: discord.User, reason: str = "Severe violations of Discord's terms of service."):
         mutual_guilds = [guild for guild in self.client.guilds if guild.get_member(user.id)]
@@ -66,20 +66,16 @@ class Global(commands.Cog):
                 if interaction.user != ctx.author:
                     return await interaction.response.send_message("This interaction is not for you.", ephemeral=True)
                 entries = [f"{i+1}. {name}" for i, name in enumerate(success)]
-                paginator = Paginator(
-                    source=DescriptionEmbedPaginator(entries=entries, description="", title=f"Successful Bans [{len(success)}]", color=0x000000, per_page=10),
-                    ctx=ctx
-                )
+                embeds = DescriptionEmbedPaginator(entries=entries, description="", title=f"Successful Bans [{len(success)}]", color=0x000000, per_page=10).get_pages()
+                paginator = Paginator(ctx, embeds)
                 await paginator.paginate()
 
             async def list_failure(interaction):
                 if interaction.user != ctx.author:
                     return await interaction.response.send_message("This interaction is not for you.", ephemeral=True)
                 entries = [f"{i+1}. {name}" for i, name in enumerate(failure)]
-                paginator = Paginator(
-                    source=DescriptionEmbedPaginator(entries=entries, description="", title=f"Unsuccessful Bans [{len(failure)}]", color=0x000000, per_page=10),
-                    ctx=ctx
-                )
+                embeds = DescriptionEmbedPaginator(entries=entries, description="", title=f"Unsuccessful Bans [{len(failure)}]", color=0x000000, per_page=10).get_pages()
+                paginator = Paginator(ctx, embeds)
                 await paginator.paginate()
 
             success_button.callback = list_success
@@ -142,20 +138,16 @@ class Global(commands.Cog):
                 if interaction.user != ctx.author:
                     return await interaction.response.send_message("This interaction is not for you.", ephemeral=True)
                 entries = [f"{i+1}. {name}" for i, name in enumerate(success)]
-                paginator = Paginator(
-                    source=DescriptionEmbedPaginator(entries=entries, description="", title=f"Successful Kicks [{len(success)}]", color=0x000000, per_page=10),
-                    ctx=ctx
-                )
+                embeds = DescriptionEmbedPaginator(entries=entries, description="", title=f"Successful Kicks [{len(success)}]", color=0x000000, per_page=10).get_pages()
+                paginator = Paginator(ctx, embeds)
                 await paginator.paginate()
 
             async def list_failure(interaction):
                 if interaction.user != ctx.author:
                     return await interaction.response.send_message("This interaction is not for you.", ephemeral=True)
                 entries = [f"{i+1}. {name}" for i, name in enumerate(failure)]
-                paginator = Paginator(
-                    source=DescriptionEmbedPaginator(entries=entries, description="", title=f"Unsuccessful Kicks [{len(failure)}]", color=0x000000, per_page=10),
-                    ctx=ctx
-                )
+                embeds = DescriptionEmbedPaginator(entries=entries, description="", title=f"Unsuccessful Kicks [{len(failure)}]", color=0x000000, per_page=10).get_pages()
+                paginator = Paginator(ctx, embeds)
                 await paginator.paginate()
 
             success_button.callback = list_success
@@ -222,20 +214,16 @@ class Global(commands.Cog):
                 if interaction.user != ctx.author:
                     return await interaction.response.send_message("This interaction is not for you.", ephemeral=True)
                 entries = [f"{i+1}. {name}" for i, name in enumerate(success)]
-                paginator = Paginator(
-                    source=DescriptionEmbedPaginator(entries=entries, description="", title=f"Successful Timeouts [{len(success)}]", color=0x000000, per_page=10),
-                    ctx=ctx
-                )
+                embeds = DescriptionEmbedPaginator(entries=entries, description="", title=f"Successful Timeouts [{len(success)}]", color=0x000000, per_page=10).get_pages()
+                paginator = Paginator(ctx, embeds)
                 await paginator.paginate()
 
             async def list_failure(interaction):
                 if interaction.user != ctx.author:
                     return await interaction.response.send_message("This interaction is not for you.", ephemeral=True)
                 entries = [f"{i+1}. {name}" for i, name in enumerate(failure)]
-                paginator = Paginator(
-                    source=DescriptionEmbedPaginator(entries=entries, description="", title=f"Unsuccessful Timeouts [{len(failure)}]", color=0x000000, per_page=10),
-                    ctx=ctx
-                )
+                embeds = DescriptionEmbedPaginator(entries=entries, description="", title=f"Unsuccessful Timeouts [{len(failure)}]", color=0x000000, per_page=10).get_pages()
+                paginator = Paginator(ctx, embeds)
                 await paginator.paginate()
 
             success_button.callback = list_success
@@ -304,20 +292,16 @@ class Global(commands.Cog):
                 if interaction.user != ctx.author:
                     return await interaction.response.send_message("This interaction is not for you.", ephemeral=True)
                 entries = [f"{i+1}. {name}" for i, name in enumerate(success)]
-                paginator = Paginator(
-                    source=DescriptionEmbedPaginator(entries=entries, description="", title=f"Successful Nickname Change [{len(success)}]", color=0x000000, per_page=10),
-                    ctx=ctx
-                )
+                embeds = DescriptionEmbedPaginator(entries=entries, description="", title=f"Successful Nickname Change [{len(success)}]", color=0x000000, per_page=10).get_pages()
+                paginator = Paginator(ctx, embeds)
                 await paginator.paginate()
 
             async def list_failure(interaction):
                 if interaction.user != ctx.author:
                     return await interaction.response.send_message("This interaction is not for you.", ephemeral=True)
                 entries = [f"{i+1}. {name}" for i, name in enumerate(failure)]
-                paginator = Paginator(
-                    source=DescriptionEmbedPaginator(entries=entries, description="", title=f"Unsuccessful Nickname Change [{len(failure)}]", color=0x000000, per_page=10),
-                    ctx=ctx
-                )
+                embeds = DescriptionEmbedPaginator(entries=entries, description="", title=f"Unsuccessful Nickname Change [{len(failure)}]", color=0x000000, per_page=10).get_pages()
+                paginator = Paginator(ctx, embeds)
                 await paginator.paginate()
 
             success_button.callback = list_success
@@ -383,20 +367,16 @@ class Global(commands.Cog):
                 if interaction.user != ctx.author:
                     return await interaction.response.send_message("This interaction is not for you.", ephemeral=True)
                 entries = [f"{i+1}. {name}" for i, name in enumerate(success)]
-                paginator = Paginator(
-                    source=DescriptionEmbedPaginator(entries=entries, description="", title=f"Successful Nickname Clear [{len(success)}]", color=0x000000, per_page=10),
-                    ctx=ctx
-                )
+                embeds = DescriptionEmbedPaginator(entries=entries, description="", title=f"Successful Nickname Clear [{len(success)}]", color=0x000000, per_page=10).get_pages()
+                paginator = Paginator(ctx, embeds)
                 await paginator.paginate()
 
             async def list_failure(interaction):
                 if interaction.user != ctx.author:
                     return await interaction.response.send_message("This interaction is not for you.", ephemeral=True)
                 entries = [f"{i+1}. {name}" for i, name in enumerate(failure)]
-                paginator = Paginator(
-                    source=DescriptionEmbedPaginator(entries=entries, description="", title=f"Unsuccessful Nickname Clear [{len(failure)}]", color=0x000000, per_page=10),
-                    ctx=ctx
-                )
+                embeds = DescriptionEmbedPaginator(entries=entries, description="", title=f"Unsuccessful Nickname Clear [{len(failure)}]", color=0x000000, per_page=10).get_pages()
+                paginator = Paginator(ctx, embeds)
                 await paginator.paginate()
 
             success_button.callback = list_success
@@ -477,20 +457,16 @@ class Global(commands.Cog):
                 if interaction.user != ctx.author:
                     return await interaction.response.send_message("This interaction is not for you.", ephemeral=True)
                 entries = [f"{i+1}. {name}" for i, name in enumerate(success)]
-                paginator = Paginator(
-                    source=DescriptionEmbedPaginator(entries=entries, description="", title=f"Successful Freezes [{len(success)}]", color=0x000000, per_page=10),
-                    ctx=ctx
-                )
+                embeds= DescriptionEmbedPaginator(entries=entries, description="", title=f"Successful Freezes [{len(success)}]", color=0x000000, per_page=10).get_pages()
+                paginator = Paginator(ctx, embeds)
                 await paginator.paginate()
 
             async def list_failure(interaction):
                 if interaction.user != ctx.author:
                     return await interaction.response.send_message("This interaction is not for you.", ephemeral=True)
                 entries = [f"{i+1}. {name}" for i, name in enumerate(failure)]
-                paginator = Paginator(
-                    source=DescriptionEmbedPaginator(entries=entries, description="", title=f"Unsuccessful Freezes [{len(failure)}]", color=0x000000, per_page=10),
-                    ctx=ctx
-                )
+                embeds = DescriptionEmbedPaginator(entries=entries, description="", title=f"Unsuccessful Freezes [{len(failure)}]", color=0x000000, per_page=10).get_pages()
+                paginator = Paginator(ctx, embeds)
                 await paginator.paginate()
 
             async def stop_freeze(interaction):
@@ -595,11 +571,3 @@ class Global(commands.Cog):
             await ctx.send(f"✅ | Stopped freezing {member.mention}'s nickname.")
         else:
             await ctx.send(f"❌ | {member.mention}'s nickname is not currently being frozen.")
-
-
-"""
-@Author: Sonu Jana
-    + Discord: me.sonu
-    + Community: https://discord.gg/odx (Olympus Development)
-    + for any queries reach out Community or DM me.
-"""
