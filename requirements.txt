@@ -3,7 +3,6 @@ discord.py
 discord.ui
 jishaku
 asyncio
-discord-ext-pages
 aiohttp
 datetime
 flask
