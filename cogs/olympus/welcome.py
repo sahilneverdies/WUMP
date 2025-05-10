@@ -9,10 +9,10 @@ class _welcome(commands.Cog):
     """Welcome commands"""
   
     def help_custom(self):
-		      emoji = '👋'
-		      label = "Welcomer Commands"
-		      description = ""
-		      return emoji, label, description
+              emoji = '👋'
+              label = "Welcomer Commands"
+              description = ""
+              return emoji, label, description
 
     @commands.group()
     async def __Welcomer__(self, ctx: commands.Context):
