@@ -5,7 +5,7 @@ import asyncio
 import traceback
 from threading import Thread
 from datetime import datetime
-
+import server
 import aiohttp
 import discord
 from discord.ext import commands
