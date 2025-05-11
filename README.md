@@ -1,8 +1,8 @@
 <h1 align="center">
  <br>
-  <a href="https://github.com/sonujana26"><img src="https://cdn.discordapp.com/avatars/1144179659735572640/cfbc935b49259525bfc1348a0582c6b4.png?size=1024.png?size=1024?size=128"></a>
+  <a href="https://github.com/sonujana26"><img src="https://cdn.discordapp.com/attachments/1346122677839986829/1370764716074340502/pngtree-cool-blue-dragon-logo-png-image_14012110.avif?ex=6821585f&is=682006df&hm=5506d8ed1c602a617e81a38687b1fe13d66d4987d12830746e8a96b44bbac1b6&"></a>
   <br>
-  Olympus the Ultimate Discord Bot
+  Wump the Ultimate Discord Bot
   <br>
 </h1>
 I've decided to make this repo public again!!
@@ -73,7 +73,7 @@ Olympus is a powerful, easy-to-use Discord bot designed to enhance your server e
 
 1. First, clone the repository:  
    ```bash
-   git clone https://github.com/sonujana26/olympus-bot
+   git clone https://github.com/sahilneverdies/wump
    ```
 2. After cloning, run the bot:
    ```bash
@@ -114,7 +114,7 @@ Coming Soon
 
 ## Credits
 **Author:**  
-Sonu Jana - *Head Developer* - **[GitHub](https://github.com/sonujana26)**
+Sonu Jana - *Head Developer* - **[GitHub](https://github.com/sahilneverdies)**
 
 **Team:**
 <div align="center">
