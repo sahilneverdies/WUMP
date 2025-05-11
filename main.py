@@ -5,11 +5,11 @@ import asyncio
 import traceback
 from threading import Thread
 from datetime import datetime
-import server
+
 import aiohttp
 import discord
 from discord.ext import commands
-import os 
+
 
 from core import Context
 from core.Cog import Cog
@@ -128,6 +128,28 @@ async def on_command_completion(context: commands.Context) -> None:
             except Exception as e:
                 print(f'Command failed: {e}')
                 traceback.print_exc()
+
+from flask import Flask
+from threading import Thread
+import os
+
+import token
+
+app = Flask(__name__)
+
+
+@app.route('/')
+def home():
+    return f"© Wump Development 2025"
+
+
+def run():
+    app.run(host='0.0.0.0', port=8080)
+
+
+def keep_alive():
+    server = Thread(target=run)
+    server.start()
 
 
 
