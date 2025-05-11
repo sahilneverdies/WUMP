@@ -45,7 +45,7 @@ I've decided to make this repo public again!!
   <a href="#credits">Credits</a>
 </p>
 
-## 🔗 [Invite the Public Bot (Wump) by clicking here!](https://cdn.discordapp.com/attachments/1346122677839986829/1370764716074340502/pngtree-cool-blue-dragon-logo-png-image_14012110.avif?ex=6821585f&is=682006df&hm=5506d8ed1c602a617e81a38687b1fe13d66d4987d12830746e8a96b44bbac1b6&)
+## 🔗 [Invite the Public Bot (Wump) by clicking here!](https://discord.com/oauth2/authorize?client_id=1370002710002139197&permissions=8&integration_type=0&scope=bot)
 
 ## About
 
@@ -118,7 +118,7 @@ SAHIL - *Head Developer* - **[GitHub](https://github.com/sahilneverdies)**
 
 **Team:**
 <div align="center">
-  <a href="https://discord.com/invite/odx">
+  <a href="https://discord.gg/mHwdnW7DC2">
     <img src="https://discordapp.com/api/guilds/699587669059174461/widget.png?style=banner2">
   </a>
 </div>
