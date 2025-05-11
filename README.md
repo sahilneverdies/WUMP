@@ -45,7 +45,7 @@ I've decided to make this repo public again!!
   <a href="#credits">Credits</a>
 </p>
 
-## 🔗 [Invite the Public Bot (wump) by clicking here!]([https://discord.com/oauth2/authorize?client_id=1144179659735572640&permissions=2113268958&scope=bot](https://discord.com/oauth2/authorize?client_id=1370002710002139197&permissions=8&integration_type=0&scope=bot
+## 🔗 [Invite the Public Bot (wump) by clicking here!][https://discord.com/oauth2/authorize?client_id=1144179659735572640&permissions=2113268958&scope=bot](https://discord.com/oauth2/authorize?client_id=1370002710002139197&permissions=8&integration_type=0&scope=bot]
 
 ## About
 
